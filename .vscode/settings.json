@@ -4,8 +4,10 @@
         "arange",
         "argmax",
         "argmin",
+        "bmatrix",
         "creare",
         "dtype",
+        "linalg",
         "ndim",
         "Numpy"
     ]
