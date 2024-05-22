@@ -1,58 +1,48 @@
-matrix operations in linear algebra.
+To understand correlation statistics through an example, we will calculate the Pearson correlation coefficient between two sets of data and explain how the correlation is derived using the sum of their deviations from the mean. Let's break down the steps and calculations involved.
 
-$2x + 3y = 8$ <br> 
-$4x - 2y = 2 $
+### Data
+Consider the following two sets of data:
 
-We can represent this system of equations in matrix form as:
+- \( X = [1, 2, 3, 4, 5] \)
+- \( Y = [2, 4, 5, 4, 5] \)
 
-$
-\begin{bmatrix} 2 & 3 \\ 4 & -2 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 8 \\ 2 \end{bmatrix}
-$
+### Steps to Calculate Pearson Correlation Coefficient
 
-To solve this system of equations, we can use matrix operations. First, let's denote the coefficient matrix as **A** the variable matrix as ***x*** and the constant matrix as **B**
+1. **Calculate the Mean of X and Y:** <br>
+   $
+   \text{mean}(X) = \frac{1+2+3+4+5}{5} = 3
+   $<br>
+   $
+   \text{mean}(Y) = \frac{2+4+5+4+5}{5} = 4
+   $
 
-$
-A = \begin{bmatrix} 2 & 3 \\ 4 & -2 \end{bmatrix}, \quad X = \begin{bmatrix} x \\ y \end{bmatrix}, \quad B = \begin{bmatrix} 8 \\ 2 \end{bmatrix}
-$
+2. **Calculate the Deviations from the Mean:**
+   $
+   X' = X - \text{mean}(X) = [1-3, 2-3, 3-3, 4-3, 5-3] = [-2, -1, 0, 1, 2]
+   $
+   $
+   Y' = Y - \text{mean}(Y) = [2-4, 4-4, 5-4, 4-4, 5-4] = [-2, 0, 1, 0, 1]
+   $
 
-To find the solution for \( X \), we can use the formula:
+3. **Calculate the Sum of the Products of Deviations:**
+   $
+   \sum (X'Y') = (-2 \cdot -2) + (-1 \cdot 0) + (0 \cdot 1) + (1 \cdot 0) + (2 \cdot 1) = 4 + 0 + 0 + 0 + 2 = 6
+   $
 
-\[
-X = A^{-1} B
-\]
+4. **Calculate the Sum of the Squared Deviations:**
+   $
+   \sum (X'^2) = (-2)^2 + (-1)^2 + 0^2 + 1^2 + 2^2 = 4 + 1 + 0 + 1 + 4 = 10
+   $
+   $
+   \sum (Y'^2) = (-2)^2 + 0^2 + 1^2 + 0^2 + 1^2 = 4 + 0 + 1 + 0 + 1 = 6
+   $
 
-where $ A^{-1}$ is the inverse of matrix A.
+5. **Calculate the Pearson Correlation Coefficient:**
+   $
+   r = \frac{\sum (X'Y')}{\sqrt{\sum (X'^2) \cdot \sum (Y'^2)}} = \frac{6}{\sqrt{10 \cdot 6}} = \frac{6}{\sqrt{60}} = \frac{6}{\sqrt{60}} = \frac{6}{7.746} \approx 0.7746
+   $
 
-Now, let's perform the matrix operations to find the solution:
+### Interpretation
 
-1. Calculate the inverse of matrix A:
+The Pearson correlation coefficient $r \approx 0.7746$ indicates a strong positive linear relationship between the variables  X and Y.
 
-$
-A^{-1} = \frac{1}{\text{det}(A)} \text{adj}(A)
-$
-
-2. Calculate the determinant of matrix A:
-
-$
-\text{det}(A) = (2 \times -2) - (3 \times 4) = -4 - 12 = -16
-$
-
-3. Calculate the adjugate of matrix A:
-
-$
-\text{adj}(A) = \begin{bmatrix} -2 & -3 \\ -4 & 2 \end{bmatrix}
-$
-
-4. Calculate the inverse of matrix A:
-
-$
-A^{-1} = \frac{1}{-16} \begin{bmatrix} -2 & -3 \\ -4 & 2 \end{bmatrix} = \begin{bmatrix} \frac{1}{8} & \frac{3}{16} \\ \frac{1}{4} & -\frac{1}{8} \end{bmatrix}
-$
-
-5. Multiply $ A^{-1}$ by matrix  B  to find the solution matrix X:
-
-$
-X = A^{-1} B = \begin{bmatrix} \frac{1}{8} & \frac{3}{16} \\ \frac{1}{4} & -\frac{1}{8} \end{bmatrix} \begin{bmatrix} 8 \\ 2 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}
-$
-
-So, the solution to the system of linear equations is \( x = 1 \) and \( y = 2 \).
